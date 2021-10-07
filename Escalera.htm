@@ -41,26 +41,29 @@ function init() {
     var arrCube = [];
 
     var t = 2.2;
+
+	//Al cambiar el parametro: i < n se cambia el numero de cubos
+
     for (var i = 0; i < 3; i++) {
         d = t * 1.05
-        arrCube.push(cubo(t, t, t, 0, 0, 0, 'Basic', (i==0 ? 'red': i==1 ? 'green' : 'blue'), false));
+        arrCube.push(cubo(t, t, t, t/2, t/2 + t * i, t/2, 'Basic', (i==0 ? 'red': i==1 ? 'green' : 'blue'), false));
          
 	//Utilice el metodo visto anteriormente en clase donde me permite manipular individualmente los cubos
 	//y cambié sus valores
 
 	//cubo rojo
       if (i == 0)
-            arrCube[i].geometry.translate(-0.4,2,0)
+            arrCube[i].geometry.translate(0,2,0)
 
 	//cubo verde
         else if (i == 1)
-            arrCube[i].geometry.translate(0,-2.3,-4.6)
+            arrCube[i].geometry.translate(0,-2.3,-2)
 
 	//cubo azul
         else
-            arrCube[i].geometry.translate(0,0,-2.3)
+            arrCube[i].geometry.translate(0,-0.2,2.2)
 
-        /*arrCube[i].geometry.translate((i==1)*d, (i==2)*d, (i==3)*d)*/
+
 
 	//rotacion en terminos de pi 
 	arrCube[i].geometry.rotateX(Math.PI/2);
@@ -73,8 +76,8 @@ function init() {
     const axesHelper = new THREE.AxesHelper(10);
     scene.add(axesHelper);
 
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.set(7,3,5);
+    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(10, 10 , 10);
     camera.lookAt(arrCube[2].position);
     clock = new THREE.Clock();
     window.addEventListener('resize', onWindowResize, false);
